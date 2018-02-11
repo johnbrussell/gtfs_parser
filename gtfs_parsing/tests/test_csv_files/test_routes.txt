@@ -1,0 +1,7 @@
+"route_id","agency_id","route_short_name","route_long_name","route_desc","route_type","route_url","route_color","route_text_color","route_sort_order"
+"CapeFlyer","3","","CapeFLYER","",2,"http://capeflyer.com/","006595","FFFFFF",100
+"Logan-22","2","Shuttle","Massport Subway Shuttle (22)","Airport Shuttle",3,"","","",2000022
+"Logan-33","2","Shuttle","Massport Subway Shuttle (33)","Airport Shuttle",3,"","","",2000033
+"Logan-55","2","Shuttle","Massport Subway Shuttle (55)","Airport Shuttle",3,"","","",2000055
+"Logan-66","2","Shuttle","Massport Subway / Ferry Terminal Shuttle (66)","Airport Shuttle",3,"","","",2000066
+"CR-Fairmount","1","","Fairmount Line","Commuter Rail",2,"","80276C","FFFFFF",51
