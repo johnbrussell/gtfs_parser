@@ -3,25 +3,18 @@ import unittest
 
 import numpy as np
 
-from global_defaults import stopDeparture, routeInfo, tripInfo
-from gtfs_parsing.csv_reading_helper_functions import separate_columns_from_data, coerce_integer_to_string
-from gtfs_parsing.read_stop_times import to_trip_stop_time_dict, add_trip_type_to_trip_stop_times_dict
-from gtfs_parsing.read_routes import create_route_type_dict
-from gtfs_parsing.read_trips import create_trip_type_dict
+from gtfs_parsing.data_structures.data_structures import stopDeparture, routeInfo, tripInfo
+from gtfs_parsing.read_data.csv_reading_helper_functions import separate_columns_from_data, coerce_integer_to_string
+from gtfs_parsing.read_data.read_stop_times import to_trip_stop_time_dict, add_trip_type_to_trip_stop_times_dict
+from gtfs_parsing.read_data.read_routes import create_route_type_dict
+from gtfs_parsing.read_data.read_trips import create_trip_type_dict
 
 
 class TestDataMunging(unittest.TestCase):
     @staticmethod
     def readTestFile(file_path):
-        unformatted_stop_times = csv.reader(file_path, delimiter=',')
-        return separate_columns_from_data(unformatted_stop_times)
-
-    def testStopSeqCoercion(self):
-        self.assertEqual(coerce_integer_to_string("1.0"), "1")
-        self.assertEqual(coerce_integer_to_string("1.1"), "1.1")
-        self.assertEqual(coerce_integer_to_string(np.nan), "nan")
-        self.assertEqual(coerce_integer_to_string(""), "UNKNOWN")
-        self.assertEqual(coerce_integer_to_string("1"), "1")
+        unformatted_data = csv.reader(file_path, delimiter=',')
+        return separate_columns_from_data(unformatted_data)
 
     def testTripStopTimeDict(self):
         trip_stop_time_dict_expected = {
@@ -107,15 +100,15 @@ class TestDataMunging(unittest.TestCase):
 
     def testTripTypeDict(self):
         trip_type_dict_expected = {
-            'Logan-22-Weekday-trip':    routeInfo(routeId='Logan-22', routeType='Bus'),
-            'Logan-22-Weekend-trip':    routeInfo(routeId='Logan-22', routeType='Bus'),
-            'Logan-33-Weekday-trip':    routeInfo(routeId='Logan-33', routeType='Bus'),
-            'Logan-33-Weekend-trip':    routeInfo(routeId='Logan-33', routeType='Bus'),
-            'Logan-55-Weekday-trip':    routeInfo(routeId='Logan-55', routeType='Bus'),
-            'Logan-55-Weekend-trip':    routeInfo(routeId='Logan-55', routeType='Bus'),
-            'Logan-66-Weekday-trip':    routeInfo(routeId='Logan-66', routeType='Bus'),
-            'Logan-66-Weekend-trip':    routeInfo(routeId='Logan-66', routeType='Bus'),
-            'CR-Saturday-Fall-17-1752': routeInfo(routeId='CR-Fairmount', routeType='Rail')
+            'Logan-22-Weekday-trip':    routeInfo(routeId='Logan-22', routeType='3'),
+            'Logan-22-Weekend-trip':    routeInfo(routeId='Logan-22', routeType='3'),
+            'Logan-33-Weekday-trip':    routeInfo(routeId='Logan-33', routeType='3'),
+            'Logan-33-Weekend-trip':    routeInfo(routeId='Logan-33', routeType='3'),
+            'Logan-55-Weekday-trip':    routeInfo(routeId='Logan-55', routeType='3'),
+            'Logan-55-Weekend-trip':    routeInfo(routeId='Logan-55', routeType='3'),
+            'Logan-66-Weekday-trip':    routeInfo(routeId='Logan-66', routeType='3'),
+            'Logan-66-Weekend-trip':    routeInfo(routeId='Logan-66', routeType='3'),
+            'CR-Saturday-Fall-17-1752': routeInfo(routeId='CR-Fairmount', routeType='2')
         }
 
         with open('./gtfs_parsing/tests/test_csv_files/test_trips.txt') as f:
@@ -136,13 +129,13 @@ class TestDataMunging(unittest.TestCase):
                 tripStops={
                     '1': stopDeparture(stopId='Logan-Subway', departureTime='08:00:00'),
                     '2': stopDeparture(stopId='Logan-RentalCarCenter', departureTime='08:04:00')},
-                tripRouteInfo=routeInfo(routeId='Logan-22', routeType='Bus')
+                tripRouteInfo=routeInfo(routeId='Logan-22', routeType='3')
             ),
             'CR-Saturday-Fall-17-1752': tripInfo(
                 tripStops={
                     '1': stopDeparture(stopId='Readville', departureTime='7:30:00'),
                     '2': stopDeparture(stopId='Fairmount', departureTime='7:33:00')},
-                tripRouteInfo=routeInfo(routeId='CR-Fairmount', routeType='Rail')
+                tripRouteInfo=routeInfo(routeId='CR-Fairmount', routeType='2')
             )
         }
 

@@ -1,2 +1,5 @@
 gtfs_venv/
 data/
+.idea/
+agencies/
+*.pyc

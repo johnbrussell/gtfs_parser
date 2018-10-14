@@ -1,13 +1,12 @@
 import csv
 import os
 
-from global_defaults import DATA_SET
-from gtfs_parsing.csv_reading_helper_functions import separate_columns_from_data, coerce_integer_to_string
+from gtfs_parsing.read_data.csv_reading_helper_functions import separate_columns_from_data, coerce_integer_to_string
 
 
-def read_routes():
+def read_routes(agency, date):
     # Reads "routes.txt" file, returns dict(route_id: route_type)
-    with open(os.path.join('./data', DATA_SET, 'routes.txt')) as f:
+    with open(os.path.join('./agencies', agency, 'data', date, 'routes.txt')) as f:
         unformatted_trip_times = csv.reader(f, delimiter=',')
         route_types_namedtuple = separate_columns_from_data(unformatted_trip_times)
         return create_route_type_dict(route_types_namedtuple)
