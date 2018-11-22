@@ -1,5 +1,6 @@
 from gtfs_parsing.read_data import read_routes, read_stop_times, read_trips
 from gtfs_parsing.data_structures.data_structures import runConfiguration
+from gtfs_parsing.unique_route_determination import determine_unique_routes
 
 
 def run_analyses(config):
@@ -9,7 +10,8 @@ def run_analyses(config):
 
 def run_analysis(agency, date, config):
     print("Running {agency} data from {date}".format(agency=agency, date=date))
-    trip_stop_dict = read_stop_times.read_stop_times(agency, date, get_trip_type_dict(agency, date))
+    trip_type_stop_time_dict = read_stop_times.read_stop_times(agency, date, get_trip_type_dict(agency, date))
+    unique_route_trip_dict = determine_unique_routes.to_unique_route_trip_dict(trip_type_stop_time_dict)
 
 
 def determine_analysis_parameters(config):
