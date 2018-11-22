@@ -1,16 +1,14 @@
 import csv
 import unittest
 
-import numpy as np
-
 from gtfs_parsing.data_structures.data_structures import stopDeparture, routeInfo, tripInfo
-from gtfs_parsing.read_data.csv_reading_helper_functions import separate_columns_from_data, coerce_integer_to_string
+from gtfs_parsing.read_data.csv_reading_helper_functions import separate_columns_from_data
 from gtfs_parsing.read_data.read_stop_times import to_trip_stop_time_dict, add_trip_type_to_trip_stop_times_dict
 from gtfs_parsing.read_data.read_routes import create_route_type_dict
 from gtfs_parsing.read_data.read_trips import create_trip_type_dict
 
 
-class TestDataMunging(unittest.TestCase):
+class TestReadData(unittest.TestCase):
     @staticmethod
     def readTestFile(file_path):
         unformatted_data = csv.reader(file_path, delimiter=',')
