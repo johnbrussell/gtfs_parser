@@ -7,13 +7,13 @@ def to_unique_route_trip_dict(trip_type_stop_time_dict):
     for trip_id in trip_type_stop_time_dict:
         trip_route_info = get_trip_route_info(trip_id, trip_type_stop_time_dict)
 
-        known_route, known_route_id = identify_known_route(unique_route_trip_dict, trip_route_info, trip_id,
+        known_route, route_id = identify_known_route(unique_route_trip_dict, trip_route_info, trip_id,
                                                            trip_type_stop_time_dict)
 
         if not known_route:
-            add_unique_route(unique_route_trip_dict, known_route_id, trip_route_info)
+            add_unique_route(unique_route_trip_dict, route_id, trip_route_info)
 
-        place_trip_into_unique_routes_dict(unique_route_trip_dict, known_route_id, trip_id)
+        place_trip_into_unique_routes_dict(unique_route_trip_dict, route_id, trip_id)
 
     return unique_route_trip_dict
 
