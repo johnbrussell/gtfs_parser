@@ -8,7 +8,7 @@ def to_unique_route_trip_dict(trip_type_stop_time_dict):
         trip_route_info = get_trip_route_info(trip_id, trip_type_stop_time_dict)
 
         known_route, route_id = identify_known_route(unique_route_trip_dict, trip_route_info, trip_id,
-                                                           trip_type_stop_time_dict)
+                                                     trip_type_stop_time_dict)
 
         if not known_route:
             add_unique_route(unique_route_trip_dict, route_id, trip_route_info)
