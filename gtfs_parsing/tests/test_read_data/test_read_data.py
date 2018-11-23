@@ -98,15 +98,33 @@ class TestReadData(unittest.TestCase):
 
     def testTripTypeDict(self):
         trip_type_dict_expected = {
-            'Logan-22-Weekday-trip':    routeInfo(routeId='Logan-22', routeType='3'),
-            'Logan-22-Weekend-trip':    routeInfo(routeId='Logan-22', routeType='3'),
-            'Logan-33-Weekday-trip':    routeInfo(routeId='Logan-33', routeType='3'),
-            'Logan-33-Weekend-trip':    routeInfo(routeId='Logan-33', routeType='3'),
-            'Logan-55-Weekday-trip':    routeInfo(routeId='Logan-55', routeType='3'),
-            'Logan-55-Weekend-trip':    routeInfo(routeId='Logan-55', routeType='3'),
-            'Logan-66-Weekday-trip':    routeInfo(routeId='Logan-66', routeType='3'),
-            'Logan-66-Weekend-trip':    routeInfo(routeId='Logan-66', routeType='3'),
-            'CR-Saturday-Fall-17-1752': routeInfo(routeId='CR-Fairmount', routeType='2')
+            'Logan-22-Weekday-trip':    tripInfo(tripStops=list(),
+                                                 tripRouteInfo=routeInfo(routeId='Logan-22', routeType='3'),
+                                                 serviceId='Logan-Weekday'),
+            'Logan-22-Weekend-trip':    tripInfo(tripStops=list(),
+                                                 tripRouteInfo=routeInfo(routeId='Logan-22', routeType='3'),
+                                                 serviceId='Logan-Weekend'),
+            'Logan-33-Weekday-trip':    tripInfo(tripStops=list(),
+                                                 tripRouteInfo=routeInfo(routeId='Logan-33', routeType='3'),
+                                                 serviceId='Logan-Weekday'),
+            'Logan-33-Weekend-trip':    tripInfo(tripStops=list(),
+                                                 tripRouteInfo=routeInfo(routeId='Logan-33', routeType='3'),
+                                                 serviceId='Logan-Weekend'),
+            'Logan-55-Weekday-trip':    tripInfo(tripStops=list(),
+                                                 tripRouteInfo=routeInfo(routeId='Logan-55', routeType='3'),
+                                                 serviceId='Logan-Weekday'),
+            'Logan-55-Weekend-trip':    tripInfo(tripStops=list(),
+                                                 tripRouteInfo=routeInfo(routeId='Logan-55', routeType='3'),
+                                                 serviceId='Logan-Weekend'),
+            'Logan-66-Weekday-trip':    tripInfo(tripStops=list(),
+                                                 tripRouteInfo=routeInfo(routeId='Logan-66', routeType='3'),
+                                                 serviceId='Logan-Weekday'),
+            'Logan-66-Weekend-trip':    tripInfo(tripStops=list(),
+                                                 tripRouteInfo=routeInfo(routeId='Logan-66', routeType='3'),
+                                                 serviceId='Logan-Weekend'),
+            'CR-Saturday-Fall-17-1752': tripInfo(tripStops=list(),
+                                                 tripRouteInfo=routeInfo(routeId='CR-Fairmount', routeType='2'),
+                                                 serviceId='CR-Saturday-SouthSide-Fall-17-FMT')
         }
 
         with open('./gtfs_parsing/tests/test_csv_files/test_trips.txt') as f:
@@ -127,13 +145,15 @@ class TestReadData(unittest.TestCase):
                 tripStops={
                     '1': stopDeparture(stopId='Logan-Subway', departureTime='08:00:00'),
                     '2': stopDeparture(stopId='Logan-RentalCarCenter', departureTime='08:04:00')},
-                tripRouteInfo=routeInfo(routeId='Logan-22', routeType='3')
+                tripRouteInfo=routeInfo(routeId='Logan-22', routeType='3'),
+                serviceId='Logan-Weekday'
             ),
             'CR-Saturday-Fall-17-1752': tripInfo(
                 tripStops={
                     '1': stopDeparture(stopId='Readville', departureTime='7:30:00'),
                     '2': stopDeparture(stopId='Fairmount', departureTime='7:33:00')},
-                tripRouteInfo=routeInfo(routeId='CR-Fairmount', routeType='2')
+                tripRouteInfo=routeInfo(routeId='CR-Fairmount', routeType='2'),
+                serviceId='CR-Saturday-SouthSide-Fall-17-FMT'
             )
         }
 

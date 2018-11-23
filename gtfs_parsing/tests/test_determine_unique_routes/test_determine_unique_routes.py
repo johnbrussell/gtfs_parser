@@ -12,7 +12,8 @@ class TestDetermineUniqueRoutes(unittest.TestCase):
                 '2': stopDeparture(stopId='s3', departureTime='12:01'),
                 '3': stopDeparture(stopId='s4', departureTime='12:02')
             },
-            tripRouteInfo=routeInfo(routeId="testId", routeType="Plane")
+            tripRouteInfo=routeInfo(routeId="testId", routeType="Plane"),
+            serviceId='service'
         ),
         't2': tripInfo(
             tripStops={
@@ -20,14 +21,16 @@ class TestDetermineUniqueRoutes(unittest.TestCase):
                 '2': stopDeparture(stopId='s3', departureTime='12:01'),
                 '3': stopDeparture(stopId='s4', departureTime='12:02')
             },
-            tripRouteInfo=routeInfo(routeId="differentTestId", routeType="Bus")
+            tripRouteInfo=routeInfo(routeId="differentTestId", routeType="Bus"),
+            serviceId='service'
         ),
         't3': tripInfo(
             tripStops={
                 '1': stopDeparture(stopId='s2', departureTime='12:00'),
                 '2': stopDeparture(stopId='s3', departureTime='12:01')
             },
-            tripRouteInfo=routeInfo(routeId="testId", routeType="Plane")
+            tripRouteInfo=routeInfo(routeId="testId", routeType="Plane"),
+            serviceId='service'
         ),
         't4': tripInfo(
             tripStops={
@@ -35,7 +38,8 @@ class TestDetermineUniqueRoutes(unittest.TestCase):
                 '2': stopDeparture(stopId='s3', departureTime='12:01'),
                 '3': stopDeparture(stopId='s4', departureTime='12:02')
             },
-            tripRouteInfo=routeInfo(routeId="testId", routeType="Plane")
+            tripRouteInfo=routeInfo(routeId="testId", routeType="Plane"),
+            serviceId='service'
         ),
         't5': tripInfo(
             tripStops={
@@ -44,7 +48,8 @@ class TestDetermineUniqueRoutes(unittest.TestCase):
                 '3': stopDeparture(stopId='s3', departureTime='12:01'),
                 '4': stopDeparture(stopId='s4', departureTime='12:02')
             },
-            tripRouteInfo=routeInfo(routeId="testId", routeType="Plane")
+            tripRouteInfo=routeInfo(routeId="testId", routeType="Plane"),
+            serviceId='service'
         )
     }
 
