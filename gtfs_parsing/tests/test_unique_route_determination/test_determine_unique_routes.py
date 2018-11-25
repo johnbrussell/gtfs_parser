@@ -130,6 +130,10 @@ class TestDetermineUniqueRoutes(unittest.TestCase):
         ))
 
     def test_to_unique_route_trip_dict(self):
+        test_date_trip_dict = {
+            1: {'t1', 't2', 't3', 't4', 't5'}
+        }
+
         expected_route_dict = {
             1: uniqueRouteInfo(tripIds=['t1', 't4'], routeInfo=routeInfo(routeId="testId", routeType="Plane")),
             2: uniqueRouteInfo(tripIds=['t2'], routeInfo=routeInfo(routeId="differentTestId", routeType="Bus")),
@@ -137,10 +141,22 @@ class TestDetermineUniqueRoutes(unittest.TestCase):
             4: uniqueRouteInfo(tripIds=['t5'], routeInfo=routeInfo(routeId="testId", routeType="Plane"))
         }
 
-        actual_route_dict = determine_unique_routes.to_unique_route_trip_dict(self.TEST_TRIP_DICT)
+        actual_route_dict = determine_unique_routes.to_unique_route_trip_dict(self.TEST_TRIP_DICT, test_date_trip_dict)
 
         self.assertEqual(tuple(expected_route_dict.keys()), tuple(actual_route_dict.keys()))
 
         for key in expected_route_dict:
             self.assertEqual(tuple(expected_route_dict[key].tripIds), tuple(actual_route_dict[key].tripIds))
             self.assertEqual(expected_route_dict[key].routeInfo, actual_route_dict[key].routeInfo)
+
+    def test_trips_operating_within_analysis_dates(self):
+        expected_output = {'t1', 't2', 't3'}
+
+        test_input = {
+            1: {'t1', 't2', 't3'}
+        }
+
+        actual_output = set(determine_unique_routes.trips_operating_within_analysis_dates(test_input))
+
+        self.assertTrue(expected_output.issubset(actual_output))
+        self.assertTrue(actual_output.issubset(expected_output))

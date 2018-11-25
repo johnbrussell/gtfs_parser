@@ -1,10 +1,10 @@
 from gtfs_parsing.data_structures.data_structures import uniqueRouteInfo
 
 
-def to_unique_route_trip_dict(trip_type_stop_time_dict):
+def to_unique_route_trip_dict(trip_type_stop_time_dict, date_trip_dict):
     unique_route_trip_dict = dict()
 
-    for trip_id in trip_type_stop_time_dict:
+    for trip_id in trips_operating_within_analysis_dates(date_trip_dict):
         trip_route_info = get_trip_route_info(trip_id, trip_type_stop_time_dict)
 
         known_route, route_id = identify_known_route(unique_route_trip_dict, trip_route_info, trip_id,
@@ -73,3 +73,10 @@ def is_list_of_identical_tuples(list_of_two_tuples):
 def get_trip_stops(trip_dict, trip_id):
     trip_stops = trip_dict[trip_id].tripStops.values()
     return [stop.stopId for stop in trip_stops]
+
+
+def trips_operating_within_analysis_dates(date_trip_dict):
+    valid_trips = list()
+    for date in date_trip_dict:
+        valid_trips.extend(list(date_trip_dict[date]))
+    return sorted(valid_trips)

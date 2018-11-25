@@ -17,7 +17,7 @@ def run_analysis(configuration):
     date_trip_dict = filter_service_dates.filter_for_service_dates(configuration.agency, configuration.date,
                                                                    trip_type_stop_time_dict,
                                                                    configuration.start_date, configuration.end_date)
-    unique_route_trip_dict = determine_unique_routes.to_unique_route_trip_dict(trip_type_stop_time_dict)
+    unique_route_trip_dict = determine_unique_routes.to_unique_route_trip_dict(trip_type_stop_time_dict, date_trip_dict)
     print(len(unique_route_trip_dict))
 
 
