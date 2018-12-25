@@ -49,5 +49,8 @@ def add_trip_type_to_trip_stop_times_dict(trips_dict, trip_type_dict):
     #  tripInfo and stopDeparture are defined in data_structures.py.
     for trip_id in trips_dict:
         trips_dict[trip_id] = tripInfo(
-            tripStops=trips_dict[trip_id], tripRouteInfo=trip_type_dict.get(trip_id, routeInfo('UNKNOWN', 'UNKNOWN')))
+            tripStops=trips_dict[trip_id],
+            tripRouteInfo=trip_type_dict.get(trip_id).tripRouteInfo,
+            serviceId=trip_type_dict.get(trip_id).serviceId
+        )
     return trips_dict

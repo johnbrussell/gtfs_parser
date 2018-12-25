@@ -9,7 +9,8 @@ from gtfs_parsing.read_data.csv_reading_helper_functions import coerce_integer_t
 
 class TestDataMunging(unittest.TestCase):
     def test_csv_column_dict(self):
-        with(open(os.path.join('./gtfs_parsing', 'tests', 'test_csv_files', 'test_routes.txt'))) as f:
+        with(open(os.path.join('./gtfs_parsing', 'tests', 'test_read_data', 'csv_files_for_tests',
+                               'test_routes.txt'))) as f:
             reader = csv.reader(f, delimiter=',')
             column = next(reader)
         expected_output = {

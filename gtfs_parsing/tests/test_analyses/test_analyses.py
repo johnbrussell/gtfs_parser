@@ -28,8 +28,11 @@ class TestDataMunging(unittest.TestCase):
             }
           }
         }
-        expected_run_parameter_list = [runConfiguration(agency='mbta', date='2018-10-13'),
-                                       runConfiguration(agency='pittsburgh_port_authority', date='2018-08-08')]
+        expected_run_parameter_list = [runConfiguration(agency='mbta', date='2018-10-13', start_date="2018-10-13",
+                                                        end_date="2018-10-19", route_types=[0, 1]),
+                                       runConfiguration(agency='pittsburgh_port_authority', date='2018-08-08',
+                                                        start_date="2018-09-04", end_date="2018-09-10",
+                                                        route_types=[1, 7])]
         actual_run_parameter_list = determine_analysis_parameters(fake_config)
 
         for expected_config, actual_config in zip(expected_run_parameter_list, actual_run_parameter_list):

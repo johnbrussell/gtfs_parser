@@ -1,7 +1,7 @@
 import csv
 import os
 
-from gtfs_parsing.data_structures.data_structures import routeInfo
+from gtfs_parsing.data_structures.data_structures import routeInfo, tripInfo
 from gtfs_parsing.read_data.csv_reading_helper_functions import separate_columns_from_data
 
 
@@ -22,7 +22,10 @@ def create_trip_type_dict(trip_type_namedtuple, route_type_dict):
 
     for trip in trip_data:
         route_type = route_type_dict[trip[trip_cols['route_id']]]
-        trip_type_dict[trip[trip_cols['trip_id']]] = routeInfo(routeId=trip[trip_cols['route_id']],
-                                                               routeType=route_type)
+        trip_type_dict[trip[trip_cols['trip_id']]] = tripInfo(
+            tripStops=list(),
+            tripRouteInfo=routeInfo(routeId=trip[trip_cols['route_id']], routeType=route_type),
+            serviceId=trip[trip_cols['service_id']]
+        )
 
     return trip_type_dict
