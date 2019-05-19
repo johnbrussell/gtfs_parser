@@ -3,3 +3,5 @@ data/
 .idea/
 agencies/
 *.pyc
+*.egg-info
+dist/
