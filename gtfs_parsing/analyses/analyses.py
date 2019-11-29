@@ -33,4 +33,4 @@ def determine_analysis_parameters(config):
 
 def get_trip_type_dict(agency, date, data_location):
     route_type_dict = read_routes.read_routes(agency, date, data_location)
-    return read_trips.read_trip_types(agency, date, route_type_dict)
+    return read_trips.read_trip_types(agency, date, route_type_dict, data_location)

@@ -5,10 +5,10 @@ from gtfs_parsing.data_structures.data_structures import routeInfo, tripInfo
 from gtfs_parsing.read_data.csv_reading_helper_functions import separate_columns_from_data
 
 
-def read_trip_types(agency, date, route_type_dict):
+def read_trip_types(agency, date, route_type_dict, data_location):
     # Reads "trips.txt" file, returns dict(trip_id: routeInfo).
     #  routeInfo is defined in data_structures.py
-    with open(os.path.join('./agencies', agency, 'data', date, 'trips.txt')) as f:
+    with open(os.path.join(data_location, agency, 'data', date, 'trips.txt')) as f:
         unformatted_trip_times = csv.reader(f, delimiter=',')
         trip_types_namedtuple = separate_columns_from_data(unformatted_trip_times)
         trip_type_dict = create_trip_type_dict(trip_types_namedtuple, route_type_dict)
