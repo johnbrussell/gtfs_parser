@@ -4,11 +4,11 @@ from gtfs_parsing.data_structures.data_structures import tripInfo, stopDeparture
 from gtfs_parsing.read_data.csv_reading_helper_functions import separate_columns_from_data, coerce_integer_to_string
 
 
-def read_stop_times(agency, date, trip_type_dict):
+def read_stop_times(agency, date, trip_type_dict, data_location):
     # Reads "stop_times.txt file"
     #  Returns dict(trip_id: tripInfo(tripStops=dict(stop_sequence: stopDeparture), tripType=route_id)).
     #  tripInfo is defined in data_structures.py.
-    with open(os.path.join('./agencies', agency, 'data', date, 'stop_times.txt')) as f:
+    with open(os.path.join(data_location, agency, 'data', date, 'stop_times.txt')) as f:
         unformatted_stop_times = csv.reader(f, delimiter=',')
         stop_times_data_namedtuple = separate_columns_from_data(unformatted_stop_times)
         trip_dict = create_trip_type_stop_time_dict(stop_times_data_namedtuple, trip_type_dict)
