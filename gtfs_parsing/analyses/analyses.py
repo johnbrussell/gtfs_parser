@@ -23,7 +23,6 @@ def determine_analysis_parameters(config):
         for date in config['agencies'][agency]['data_sets']:
             route_types_to_solve = (config['agencies'][agency]['data_sets'][date]).get('route_types_to_solve', list())
             if len(route_types_to_solve) > 0:
-                print("Running {agency} data from {date}".format(agency=agency, date=date))
                 start_date = (config['agencies'][agency]['data_sets'][date]).get('start_date', None)
                 end_date = (config['agencies'][agency]['data_sets'][date]).get('end_date', None)
                 configurations.append(runConfiguration(agency=agency, date=date, start_date=start_date,
