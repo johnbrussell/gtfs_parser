@@ -12,7 +12,8 @@ def get_unique_route_trip_dict(configuration, data_location):
                                                                data_location)
     date_trip_dict = filter_service_dates.filter_for_service_dates(configuration.agency, configuration.date,
                                                                    trip_type_stop_time_dict,
-                                                                   configuration.start_date, configuration.end_date)
+                                                                   configuration.start_date, configuration.end_date,
+                                                                   data_location)
     unique_route_trip_dict = determine_unique_routes.to_unique_route_trip_dict(trip_type_stop_time_dict, date_trip_dict)
     return unique_route_trip_dict
 
