@@ -8,7 +8,8 @@ def get_unique_route_trip_dict(configuration, data_location):
     print("Running {agency} data from {date}".format(agency=configuration.agency, date=configuration.date))
     trip_type_stop_time_dict = read_stop_times.read_stop_times(configuration.agency, configuration.date,
                                                                get_trip_type_dict(configuration.agency,
-                                                                                  configuration.date), data_location)
+                                                                                  configuration.date, data_location),
+                                                               data_location)
     date_trip_dict = filter_service_dates.filter_for_service_dates(configuration.agency, configuration.date,
                                                                    trip_type_stop_time_dict,
                                                                    configuration.start_date, configuration.end_date)
@@ -30,6 +31,6 @@ def determine_analysis_parameters(config):
     return configurations
 
 
-def get_trip_type_dict(agency, date):
-    route_type_dict = read_routes.read_routes(agency, date)
+def get_trip_type_dict(agency, date, data_location):
+    route_type_dict = read_routes.read_routes(agency, date, data_location)
     return read_trips.read_trip_types(agency, date, route_type_dict)
