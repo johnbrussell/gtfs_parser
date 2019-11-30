@@ -7,19 +7,19 @@ from gtfs_parsing.read_data.csv_reading_helper_functions import separate_columns
 from gtfs_parsing.data_structures.data_structures import serviceDates
 
 
-def read_dates(agency, date):
-    return read_calendar(agency, date), read_calendar_dates(agency, date)
+def read_dates(agency, date, data_location):
+    return read_calendar(agency, date, data_location), read_calendar_dates(agency, date, data_location)
 
 
-def read_calendar(agency, date):
-    with open(os.path.join('./agencies', agency, 'data', date, 'calendar.txt')) as f:
+def read_calendar(agency, date, data_location):
+    with open(os.path.join(data_location, agency, 'data', date, 'calendar.txt')) as f:
         unformatted_calendar = csv.reader(f, delimiter=',')
         calendar_namedtuple = separate_columns_from_data(unformatted_calendar)
         return create_service_start_end_date_dict(calendar_namedtuple.data, calendar_namedtuple.columns)
 
 
-def read_calendar_dates(agency, date):
-    with open(os.path.join('./agencies', agency, 'data', date, 'calendar_dates.txt')) as f:
+def read_calendar_dates(agency, date, data_location):
+    with open(os.path.join(data_location, agency, 'data', date, 'calendar_dates.txt')) as f:
         unformatted_calendar_dates = csv.reader(f, delimiter=',')
         calendar_dates_namedtuple = separate_columns_from_data(unformatted_calendar_dates)
         return create_calendar_exceptions_dict(calendar_dates_namedtuple.data, calendar_dates_namedtuple.columns)

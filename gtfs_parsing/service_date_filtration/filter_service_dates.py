@@ -4,8 +4,8 @@ from gtfs_parsing.read_data import read_date_information
 from gtfs_parsing.service_date_filtration import date_helpers
 
 
-def filter_for_service_dates(agency, date, trips_dict, start_date, end_date):
-    normal_service_dates, service_exceptions = read_date_information.read_dates(agency, date)
+def filter_for_service_dates(agency, date, trips_dict, start_date, end_date, data_location):
+    normal_service_dates, service_exceptions = read_date_information.read_dates(agency, date, data_location)
     return to_date_trip_dict(trips_dict, start_date, end_date, normal_service_dates,
                              service_exceptions)
 
