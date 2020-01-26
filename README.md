@@ -70,6 +70,10 @@ In the example:
  
  The purpose of this dictionary is to differentiate between the various variations of each route.  So, for each key in the `uniqueRouteTrips` dictionary, all `trips` in the value's `tripIds` field will have exactly the same set of stops in exactly the same order.
  
+ ## stopLocations
+ 
+ `stopLocations` is a dictionary.  The keys are stop IDs.  The values are `stopLocation` namedtuples where the `lat` attributes are the latitudes of the stops and the `long` attributes are the longitudes of the stops.
+ 
  ## Visualization
  
  Collectively these outputs allow for easy access to information about a particular trip, or iteration over many trips, in a way that does the work of combining useful information from the various input tables into one place and returns a data structure that is easier and faster to work with than a pandas data frame. The output looks something like this: 
@@ -94,6 +98,10 @@ data = gtfsSchedules(
     uniqueRouteTrips={
         1: uniqueRouteInfo(tripIds=['CR-Saturday-Fall-17-1752', ... ], routeInfo=routeInfo(routeId="CR-Fairmount", routeType="2")),
         # more unique routes
+    },
+    stopLocations={
+        'stop-1': stopLocation(lat=0.0, long=0.0),
+        # more stops
     }
 )
 ```
