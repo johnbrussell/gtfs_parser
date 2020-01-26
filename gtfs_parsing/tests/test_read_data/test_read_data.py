@@ -2,11 +2,12 @@ import csv
 import unittest
 from datetime import datetime
 
-from gtfs_parsing.data_structures.data_structures import stopDeparture, routeInfo, serviceDates, tripInfo
+from gtfs_parsing.data_structures.data_structures import stopDeparture, routeInfo, serviceDates, tripInfo, stopLocation
 from gtfs_parsing.read_data.csv_reading_helper_functions import separate_columns_from_data
 from gtfs_parsing.read_data.read_stop_times import to_trip_stop_time_dict, add_trip_type_to_trip_stop_times_dict
 from gtfs_parsing.read_data.read_routes import create_route_type_dict
 from gtfs_parsing.read_data.read_trips import create_trip_type_dict
+from gtfs_parsing.read_data.read_stops import create_stop_location_dict
 from gtfs_parsing.read_data.read_date_information import create_service_start_end_date_dict, \
     create_calendar_exceptions_dict
 
@@ -257,3 +258,20 @@ class TestReadData(unittest.TestCase):
             for inner_key in service_exceptions_dict_expected[key]:
                 self.assertEqual(service_exceptions_dict_expected[key][inner_key],
                                  service_exceptions_dict_actual[key][inner_key])
+
+    def testReadStops(self):
+        stop_location_dict_expected = {
+            '175': stopLocation(lat=40.0, long=-79.978),
+            '180': stopLocation(lat=41.0, long=-80.0),
+            '270': stopLocation(lat=0.0, long=-100.0),
+            '420': stopLocation(lat=-4.0, long=5.0),
+        }
+
+        with open('./gtfs_parsing/tests/test_read_data/csv_files_for_tests/test_stops.txt') as f:
+            input_namedtuple = self.readTestFile(f)
+            stop_location_dict_actual = create_stop_location_dict(input_namedtuple)
+
+        self.assertEqual(tuple(stop_location_dict_expected.keys()), tuple(stop_location_dict_actual.keys()))
+
+        for key in stop_location_dict_expected:
+            self.assertEqual(stop_location_dict_expected[key], stop_location_dict_actual[key])

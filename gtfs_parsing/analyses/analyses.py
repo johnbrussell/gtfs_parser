@@ -1,4 +1,4 @@
-from gtfs_parsing.read_data import read_routes, read_stop_times, read_trips
+from gtfs_parsing.read_data import read_routes, read_stop_times, read_trips, read_stops
 from gtfs_parsing.data_structures.data_structures import runConfiguration, gtfsSchedules
 from gtfs_parsing.unique_route_determination import determine_unique_routes
 from gtfs_parsing.service_date_filtration import filter_service_dates
@@ -14,8 +14,9 @@ def parse(configuration, data_location):
                                                                    configuration.start_date, configuration.end_date,
                                                                    data_location)
     unique_route_trip_dict = determine_unique_routes.to_unique_route_trip_dict(trip_type_stop_time_dict, date_trip_dict)
+    stop_locations = read_stops.read_stop_locations(configuration.agency, configuration.date, data_location)
     return gtfsSchedules(tripSchedules=trip_type_stop_time_dict, dateTrips=date_trip_dict,
-                         uniqueRouteTrips=unique_route_trip_dict)
+                         uniqueRouteTrips=unique_route_trip_dict, stopLocations=stop_locations)
 
 
 def determine_analysis_parameters(config):

@@ -1,0 +1,5 @@
+stop_id,stop_code,stop_name,stop_desc,stop_lat,stop_lon,zone_id
+175,2593,"26TH ST AT PENN AVE FS (SPRING WAY)",,  40, -79.978,01
+180,2161,"28TH ST AT LIBERTY AVE",,  41, -80,01
+270,2410,"32ND ST AT SPRING WAY",,  0, -100,01
+420,1199,"40TH ST AT BUTLER ST",,  -4, 5,01
