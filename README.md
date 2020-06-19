@@ -72,7 +72,7 @@ In the example:
  
  ## stopLocations
  
- `stopLocations` is a dictionary.  The keys are stop IDs.  The values are `stopLocation` namedtuples where the `lat` attributes are the latitudes of the stops and the `long` attributes are the longitudes of the stops.
+ `stopLocations` is a dictionary.  The keys are the `stop_id`s from the data set.  The values are `stopLocation` namedtuples where the `lat` attributes are the latitudes of the stops and the `long` attributes are the longitudes of the stops.
  
  ## Visualization
  
