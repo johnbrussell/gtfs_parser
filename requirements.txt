@@ -4,4 +4,3 @@
 #
 #    pip-compile --no-index --output-file=requirements.txt requirements.in requirements.testing.in
 #
-numpy==1.16.3
